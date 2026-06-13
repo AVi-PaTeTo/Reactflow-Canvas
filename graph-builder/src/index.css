@@ -3,11 +3,30 @@
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/inter";
 
+#root {
+    width: 100dvw;
+    height: 100dvh;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    grid-template-rows: 70px 1fr;
+    grid-template-areas: "nav nav" "placeholder sidepanel";
+}
+
+@media screen and (max-width: 768px) {
+    /* CSS rules inside here only apply if the screen is 768px wide or smaller */
+    #root {
+        grid-template-columns: 1fr;
+        grid-template-rows: 70px 1fr;
+        grid-template-areas: "nav" "placeholder";
+    }
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
     --font-heading: var(--font-sans);
-    --font-sans: 'Inter Variable', sans-serif;
+    --font-sans: "Inter Variable", sans-serif;
     --color-sidebar-ring: var(--sidebar-ring);
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -118,13 +137,13 @@
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
+    * {
+        @apply border-border outline-ring/50;
     }
-  body {
-    @apply bg-background text-foreground;
+    body {
+        @apply bg-background text-foreground;
     }
-  html {
-    @apply font-sans;
+    html {
+        @apply font-sans;
     }
 }
