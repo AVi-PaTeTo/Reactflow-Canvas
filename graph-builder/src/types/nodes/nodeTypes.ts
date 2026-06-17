@@ -44,3 +44,5 @@ export interface ServiceNodeData {
 }
 
 export type IServiceNode = Node<ServiceNodeData, 'serviceNode'>;
+
+export type FlowNode = IGroupNode | IOriginNode | IServiceNode;

@@ -44,10 +44,11 @@ const statusColor: Record<StatusType, Status> = {
 export default function ServiceNode({ id, data, selected }: NodeProps<IServiceNode>) {
     const nodeStatus = statusColor[data?.status];
     const selectedNodeId = useAppStore((s) => s.selectedNodeId);
+    const openNodeInspector = useAppStore((s) => s.OpenNodeInspector);
     const selectNode = useAppStore((s) => s.selectNode);
-
     if (selected) {
         selectNode(id);
+        openNodeInspector();
     }
 
     return (

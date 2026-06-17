@@ -1,4 +1,4 @@
-import { IEdge, IServiceNode } from '../nodes/nodeTypes';
+import { IEdge, FlowNode } from '../nodes/nodeTypes';
 
 export interface IApplication {
     id: string;
@@ -10,6 +10,6 @@ export interface IApplication {
 export interface IGraphData {
     id: string;
     appId: string;
-    nodes: IServiceNode[];
+    nodes: FlowNode[];
     edges: IEdge[];
 }

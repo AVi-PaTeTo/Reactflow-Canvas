@@ -4,27 +4,6 @@ import { Input } from '@/components/ui/input';
 import { Slider } from '@/components/ui/slider';
 import React, { useState } from 'react';
 
-// const selectedAppId = useAppStore((s) => s.selectedAppId);
-// const selectedNodeId = useAppStore((s) => s.selectedNodeId);
-// const { data: graph } = useGraphData(selectedAppId!);
-// const resouceData = graph?.nodes.find((node) => node.id === selectedNodeId)?.data.resources;
-
-// if (!resouceData) {
-//     return <div>No Active Node</div>;
-// }
-// const [rData, setRData] = useState(resouceData);
-
-// function handleSliderChange(key: string, value: number | readonly number[]) {
-//     setRData((prev) => ({ ...prev, [key]: value }));
-// }
-
-// function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
-//     const newValue = Number(e.target.value);
-//     if (newValue >= 0 && newValue <= 50) {
-//         setRData((prev) => ({ ...prev, [e.target.id]: newValue }));
-//     }
-// }
-// console.log('oh');
 export default function ConfigTab() {
     const [configStats, setConfigStats] = useState({ cpu: 10, memory: 12, disk: 45 });
     function handleSliderChange(key: string, value: number | readonly number[]) {

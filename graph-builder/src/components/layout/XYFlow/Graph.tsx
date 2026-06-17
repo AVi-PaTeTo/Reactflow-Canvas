@@ -16,7 +16,7 @@ import {
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import { useAppStore } from '@/store/useStore';
-import type { IGroupNode, IOriginNode, IServiceNode } from '@/types';
+import type { FlowNode } from '@/types';
 import { useGraphData } from '@/queries/graphData';
 
 const nodeTypes = {
@@ -24,8 +24,6 @@ const nodeTypes = {
     groupNode: GroupNode,
     serviceNode: ServiceNode,
 };
-
-type FlowNode = IGroupNode | IOriginNode | IServiceNode;
 
 // const initialNodes: FlowNode[] = [
 //     {
@@ -137,8 +135,9 @@ export default function XYFlow({ className }: { className: string }) {
         [setEdges]
     );
 
+    console.log(edges, nodes);
     return (
-        <div className={className}>
+        <div className={`${className} z-20`}>
             <ReactFlow
                 deleteKeyCode={['Delete', 'Backspace']}
                 nodeTypes={nodeTypes}

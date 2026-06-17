@@ -9,12 +9,10 @@ import { ReactFlowProvider } from '@xyflow/react';
 const queryClient = new QueryClient();
 initializeTheme();
 
-if (import.meta.env.DEV) {
-    const { worker } = await import('./mocks/browser');
-    await worker.start({
-        onUnhandledRequest: 'warn',
-    });
-}
+const { worker } = await import('./mocks/browser');
+await worker.start({
+    onUnhandledRequest: 'warn',
+});
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>

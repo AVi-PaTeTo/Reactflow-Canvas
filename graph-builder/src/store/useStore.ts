@@ -1,3 +1,4 @@
+import NodeInspector from '@/components/rightPanel/NodeInspector';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
@@ -9,12 +10,15 @@ interface AppState {
     sidePanelCollapsed: boolean;
     isMobilePanelOpen: boolean;
     fullscreenActive: boolean;
+    inspectorOpen: boolean;
 
     selectApp: (appId: string) => void;
     selectNode: (NodeId: string) => void;
     toggleTheme: () => void;
     setSearchString: (string: string) => void;
-    closeNodeInspector: () => void;
+
+    OpenNodeInspector: () => void;
+    CloseNodeInspector: () => void;
     toggleSidePanel: () => void;
     toggleMobilePanel: () => void;
     toggleFullscreen: () => void;
@@ -27,6 +31,7 @@ export const useAppStore = create<AppState>()(
             selectedNodeId: '',
             searchString: '',
             theme: 'light',
+            inspectorOpen: false,
             sidePanelCollapsed: false,
             isMobilePanelOpen: false,
             fullscreenActive: false,
@@ -48,8 +53,8 @@ export const useAppStore = create<AppState>()(
 
                 set({ theme: newTheme });
             },
-
-            closeNodeInspector: () => set({ selectedNodeId: null }),
+            OpenNodeInspector: () => set({ inspectorOpen: true }),
+            CloseNodeInspector: () => set({ inspectorOpen: false }),
 
             toggleSidePanel: () =>
                 set((state) => ({ sidePanelCollapsed: !state.sidePanelCollapsed })),
