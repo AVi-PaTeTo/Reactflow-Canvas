@@ -1,32 +1,41 @@
-@import "tailwindcss";
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
-@import "@fontsource-variable/inter";
+@import '@xyflow/react/dist/style.css' layer(base);
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+@import '@fontsource-variable/inter';
 
 #root {
+    font-family: 'Nunito', sans-serif;
     width: 100dvw;
     height: 100dvh;
     position: relative;
     display: grid;
     grid-template-columns: 1fr 320px;
     grid-template-rows: 70px 1fr;
-    grid-template-areas: "nav nav" "placeholder sidepanel";
+    grid-template-areas: 'nav nav' 'placeholder sidepanel';
 }
 
 @media screen and (max-width: 768px) {
-    /* CSS rules inside here only apply if the screen is 768px wide or smaller */
     #root {
         grid-template-columns: 1fr;
         grid-template-rows: 70px 1fr;
-        grid-template-areas: "nav" "placeholder";
+        grid-template-areas: 'nav' 'placeholder';
     }
+}
+
+.react-flow {
+    --xy-background-color: oklch(97.797% 0.00011 271.152);
+}
+
+.react-flow.dark {
+    --xy-background-color: oklch(21.779% 0.00002 271.152);
 }
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
     --font-heading: var(--font-sans);
-    --font-sans: "Inter Variable", sans-serif;
+    --font-sans: 'Inter Variable', sans-serif;
     --color-sidebar-ring: var(--sidebar-ring);
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -65,17 +74,22 @@
     --radius-2xl: calc(var(--radius) * 1.8);
     --radius-3xl: calc(var(--radius) * 2.2);
     --radius-4xl: calc(var(--radius) * 2.6);
+    --color-tray: var(--tray);
+    --color-active: var(--active);
+    --color-suspended: var(--suspended);
+    --color-error: var(--error);
 }
 
 :root {
-    --background: oklch(1 0 0);
+    --background: oklch(97.315% 0.00011 271.152);
     --foreground: oklch(0.145 0 0);
+    --tray: oklch(93.79% 0.00956 222.547);
     --card: oklch(1 0 0);
     --card-foreground: oklch(0.145 0 0);
     --popover: oklch(1 0 0);
     --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.205 0 0);
-    --primary-foreground: oklch(0.985 0 0);
+    --primary: oklch(71.5% 0.143 215.221);
+    --primary-foreground: oklch(94.912% 0.00011 271.152);
     --secondary: oklch(0.97 0 0);
     --secondary-foreground: oklch(0.205 0 0);
     --muted: oklch(0.97 0 0);
@@ -92,31 +106,35 @@
     --chart-4: oklch(0.371 0 0);
     --chart-5: oklch(0.269 0 0);
     --radius: 0.625rem;
-    --sidebar: oklch(0.985 0 0);
+    --sidebar: oklch(94.912% 0.00011 271.152);
     --sidebar-foreground: oklch(0.145 0 0);
     --sidebar-primary: oklch(0.205 0 0);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-primary-foreground: oklch(94.912% 0.00011 271.152);
     --sidebar-accent: oklch(0.97 0 0);
     --sidebar-accent-foreground: oklch(0.205 0 0);
     --sidebar-border: oklch(0.922 0 0);
     --sidebar-ring: oklch(0.708 0 0);
+    --error: oklch(63.7% 0.237 25.331);
+    --suspended: oklch(79.5% 0.184 86.047);
+    --active: oklch(72.3% 0.219 149.579);
 }
 
 .dark {
-    --background: oklch(0.145 0 0);
-    --foreground: oklch(0.985 0 0);
+    --background: oklch(21.779% 0.00002 271.152);
+    --foreground: oklch(97.315% 0.00011 271.152);
+    --tray: oklch(92.949% 0.0146 224.808);
     --card: oklch(0.205 0 0);
-    --card-foreground: oklch(0.985 0 0);
+    --card-foreground: oklch(94.912% 0.00011 271.152);
     --popover: oklch(0.205 0 0);
-    --popover-foreground: oklch(0.985 0 0);
-    --primary: oklch(0.922 0 0);
+    --popover-foreground: oklch(94.912% 0.00011 271.152);
+    --primary: oklch(71.5% 0.143 215.221);
     --primary-foreground: oklch(0.205 0 0);
     --secondary: oklch(0.269 0 0);
-    --secondary-foreground: oklch(0.985 0 0);
+    --secondary-foreground: oklch(94.912% 0.00011 271.152);
     --muted: oklch(0.269 0 0);
     --muted-foreground: oklch(0.708 0 0);
     --accent: oklch(0.269 0 0);
-    --accent-foreground: oklch(0.985 0 0);
+    --accent-foreground: oklch(94.912% 0.00011 271.152);
     --destructive: oklch(0.704 0.191 22.216);
     --border: oklch(1 0 0 / 10%);
     --input: oklch(1 0 0 / 15%);
@@ -127,11 +145,11 @@
     --chart-4: oklch(0.371 0 0);
     --chart-5: oklch(0.269 0 0);
     --sidebar: oklch(0.205 0 0);
-    --sidebar-foreground: oklch(0.985 0 0);
+    --sidebar-foreground: oklch(94.912% 0.00011 271.152);
     --sidebar-primary: oklch(0.488 0.243 264.376);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-primary-foreground: oklch(94.912% 0.00011 271.152);
     --sidebar-accent: oklch(0.269 0 0);
-    --sidebar-accent-foreground: oklch(0.985 0 0);
+    --sidebar-accent-foreground: oklch(94.912% 0.00011 271.152);
     --sidebar-border: oklch(1 0 0 / 10%);
     --sidebar-ring: oklch(0.556 0 0);
 }
@@ -145,5 +163,26 @@
     }
     html {
         @apply font-sans;
+    }
+
+    .CollapsibleContent[data-state='open'] {
+        animation: slideDown 400ms ease-out;
+    }
+    .CollapsibleContent[data-state='closed'] {
+        animation: slideUp 400ms ease-out;
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 10%;
+            transform: translateY(-1rem);
+        }
+    }
+
+    @keyframes slideUp {
+        to {
+            opacity: 10%;
+            transform: translateY(-1rem);
+        }
     }
 }

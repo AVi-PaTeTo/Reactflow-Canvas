@@ -1,54 +1,42 @@
-import "./App.css";
-import XYFlow from "./components/layout/graph";
+import './App.css';
+import XYFlow from './components/layout/XYFlow/Graph';
 
-import { useState } from "react";
+import Navbar from './components/layout/Navbar/Navbar';
+import Sidepanel from './components/layout/Sidepanel/Sidepanel';
+import { useHotkeys } from 'react-hotkeys-hook';
+import { useAppStore } from './store/useStore';
+import { useReactFlow } from '@xyflow/react';
 
 function App() {
-    const [sideOpen, setSideOpen] = useState(true);
+    const reactFlow = useReactFlow();
+
+    const toggleFullscreenMode = useAppStore((s) => s.toggleFullscreen);
+    useHotkeys('shift+f', () => reactFlow.fitView());
+    useHotkeys('f', () => toggleFullscreenMode());
     return (
         <>
-            <div className="flex [grid-area:nav] m-3 z-50">
-                <div className="border rounded-md flex-1"></div>
-            </div>
-            <div className="z-50 m-3 [grid-area:sidepanel] relative hidden md:flex pointer-events-none">
-                <div
-                    className={`border flex flex-col gap-3 w-full bg-foreground ${sideOpen ? "h-full" : "h-[118px]"} absolute bottom-0 rounded-md p-3 transition-discrete start duration-400 ease-out pointer-events-auto`}
-                >
-                    <button
-                        className="bg-cyan-500 py-2 w-full rounded-md"
-                        onClick={() => setSideOpen((prev) => !prev)}
-                    >
-                        {sideOpen ? "Close" : "Open"}
-                    </button>
-                    <button
-                        className="bg-cyan-500 py-2 w-full rounded-md"
-                        onClick={() => setSideOpen((prev) => !prev)}
-                    >
-                        {sideOpen ? "Close" : "Open"}
-                    </button>
-                </div>
-            </div>
-
+            <Navbar />
+            <Sidepanel />
             <div className="[grid-area:placeholder] relative flex z-50 m-3 pointer-events-none">
                 <div
-                    className="fixed border rounded-md overflow-hidden bg-black -translate-x-1/2 left-1/2  pointer-events-auto flex bottom-3 gap
+                    className="fixed border rounded-md overflow-hidden bg-card/70 backdrop-blur-xs -translate-x-1/2 left-1/2   pointer-events-auto flex bottom-3 gap
                                 md:translate-y-1/2 md:bottom-1/2 md:left-3 md:translate-x-0  md:flex-col"
                 >
-                    <div className="hover:bg-gray-800 p-2">
+                    <div className="hover:bg-cyan-500/70 p-2">
                         <svg
-                            className="h-9 w-9 mx-auto "
+                            className="h-9 w-9 mx-auto fill-foreground"
                             xmlns="http://www.w3.org/2000/svg"
                             width="32"
                             height="32"
                             viewBox="0 0 24 24"
                         >
                             <path
-                                fill="white"
+                                fill=""
                                 d="M12 .297c-6.63 0-12 5.373-12 12c0 5.303 3.438 9.8 8.205 11.385c.6.113.82-.258.82-.577c0-.285-.01-1.04-.015-2.04c-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729c1.205.084 1.838 1.236 1.838 1.236c1.07 1.835 2.809 1.305 3.495.998c.108-.776.417-1.305.76-1.605c-2.665-.3-5.466-1.332-5.466-5.93c0-1.31.465-2.38 1.235-3.22c-.135-.303-.54-1.523.105-3.176c0 0 1.005-.322 3.3 1.23c.96-.267 1.98-.399 3-.405c1.02.006 2.04.138 3 .405c2.28-1.552 3.285-1.23 3.285-1.23c.645 1.653.24 2.873.12 3.176c.765.84 1.23 1.91 1.23 3.22c0 4.61-2.805 5.625-5.475 5.92c.42.36.81 1.096.81 2.22c0 1.606-.015 2.896-.015 3.286c0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
                             />
                         </svg>
                     </div>
-                    <div className="hover:bg-gray-800 p-2">
+                    <div className="hover:bg-cyan-500/70 p-2">
                         <svg
                             className="h-9 w-9 mx-auto "
                             xmlns="http://www.w3.org/2000/svg"
@@ -71,7 +59,7 @@ function App() {
                             />
                         </svg>
                     </div>
-                    <div className="hover:bg-gray-800 p-2">
+                    <div className="hover:bg-cyan-500/70 p-2">
                         <svg
                             className="h-9 w-9 mx-auto "
                             xmlns="http://www.w3.org/2000/svg"
@@ -117,7 +105,7 @@ function App() {
                             />
                         </svg>
                     </div>
-                    <div className="hover:bg-gray-800 p-2">
+                    <div className="hover:bg-cyan-500/70 p-2">
                         <svg
                             className="h-9 w-9 mx-auto "
                             xmlns="http://www.w3.org/2000/svg"
@@ -131,21 +119,18 @@ function App() {
                             />
                         </svg>
                     </div>
-                    <div className="hover:bg-gray-800 p-2">
+                    <div className="hover:bg-cyan-500/70 p-2 ">
                         <svg
-                            className="h-9 w-9 mx-auto "
+                            className="h-9 w-9 mx-auto fill-foreground"
                             xmlns="http://www.w3.org/2000/svg"
                             width="32"
                             height="32"
                             viewBox="0 0 256 256"
                         >
-                            <path
-                                fill="white"
-                                d="m223.68 66.15l-88-48.15a15.88 15.88 0 0 0-15.36 0l-88 48.17a16 16 0 0 0-8.32 14v95.64a16 16 0 0 0 8.32 14l88 48.17a15.88 15.88 0 0 0 15.36 0l88-48.17a16 16 0 0 0 8.32-14V80.18a16 16 0 0 0-8.32-14.03M128 120L47.65 76L128 32l80.35 44Zm8 99.64v-85.81l80-43.78v85.76Z"
-                            />
+                            <path d="m223.68 66.15l-88-48.15a15.88 15.88 0 0 0-15.36 0l-88 48.17a16 16 0 0 0-8.32 14v95.64a16 16 0 0 0 8.32 14l88 48.17a15.88 15.88 0 0 0 15.36 0l88-48.17a16 16 0 0 0 8.32-14V80.18a16 16 0 0 0-8.32-14.03M128 120L47.65 76L128 32l80.35 44Zm8 99.64v-85.81l80-43.78v85.76Z" />
                         </svg>
                     </div>
-                    <div className="hover:bg-gray-800 p-2">
+                    <div className="hover:bg-cyan-500/70 p-2">
                         <svg
                             className="h-9 w-9 mx-auto "
                             xmlns="http://www.w3.org/2000/svg"
@@ -156,35 +141,17 @@ function App() {
                             <g
                                 fill="yellow"
                                 stroke="yellow"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
                             >
-                                <rect
-                                    width="18"
-                                    height="7"
-                                    x="3"
-                                    y="3"
-                                    rx="1"
-                                />
-                                <rect
-                                    width="9"
-                                    height="7"
-                                    x="3"
-                                    y="14"
-                                    rx="1"
-                                />
-                                <rect
-                                    width="5"
-                                    height="7"
-                                    x="16"
-                                    y="14"
-                                    rx="1"
-                                />
+                                <rect width="18" height="7" x="3" y="3" rx="1" />
+                                <rect width="9" height="7" x="3" y="14" rx="1" />
+                                <rect width="5" height="7" x="16" y="14" rx="1" />
                             </g>
                         </svg>
                     </div>
-                    <div className="hover:bg-gray-800 p-2">
+                    <div className="hover:bg-cyan-500/70 p-2">
                         <svg
                             className="h-9 w-9 mx-auto "
                             xmlns="http://www.w3.org/2000/svg"
@@ -193,12 +160,13 @@ function App() {
                             viewBox="0 0 24 24"
                         >
                             <path
-                                fill="green"
+                                fill="purple"
                                 d="M18 16h-2v6h6v-6h-2v-4.667h-7V8h2V2H9v6h2v3.333H4V16H2v6h6v-6H6v-2.667h12z"
                             />
                         </svg>
                     </div>
                 </div>
+                {/* <OriginNode /> */}
             </div>
 
             <XYFlow className="col-span-full row-span-full" />

@@ -1,11 +1,37 @@
+// {
+//     "compilerOptions": {
+//         "target": "ES2022",
+//         "lib": ["DOM", "DOM.Iterable", "ES2022"],
+//         "module": "ESNext",
+//         "skipLibCheck": true,
+
+//         "moduleResolution": "bundler",
+//         "allowImportingTsExtensions": true,
+//         "resolveJsonModule": true,
+//         "isolatedModules": true,
+//         "noEmit": true,
+//         "jsx": "react-jsx",
+
+//         // Strict Mode - REQUIRED
+//         "strict": true,
+//         "noUnusedLocals": true,
+//         "noUnusedParameters": true,
+//         "noFallthroughCasesInSwitch": true,
+//         "noImplicitReturns": true,
+
+//         "forceConsistentCasingInFileNames": true
+//     },
+//     "include": ["src"],
+//     "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }]
+// }
 {
     "files": [],
-    "references": [
-        { "path": "./tsconfig.app.json" },
-        { "path": "./tsconfig.node.json" }
-    ],
+    "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }],
     "compilerOptions": {
-        "baseUrl": ".",
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+
+        // Path alias (centralized here)
         "paths": {
             "@/*": ["./src/*"]
         }
